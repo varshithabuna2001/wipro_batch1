@@ -1,0 +1,28 @@
+/*Element selector*/
+h1{color: gray;
+    font-style: bold;
+}
+
+/* Universal selector*/
+* {
+    color: gray;
+    text-align: left;
+}
+
+/* Group selector */
+h1,h2 p {
+    color: blue;
+    text-align: center;
+}
+
+/* Class selector */
+.highlight {
+    color: green;
+    font-size: 22px;
+}
+
+
+/* ID selector for h1 */
+h1 {
+    font-size: 30px;
+}

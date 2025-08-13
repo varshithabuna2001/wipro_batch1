@@ -1,0 +1,14 @@
+.class1 {
+     border: 2px solid black;
+        }
+
+        .class2 {
+            color: lightblue;
+            margin: (20px 10px 40px,30px); 
+        }
+
+        .class3 {
+            color: red;
+            margin-left: 150px; 
+            margin-top: 60px;
+}

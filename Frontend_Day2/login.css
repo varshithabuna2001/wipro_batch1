@@ -1,0 +1,22 @@
+body {
+    background-color: white;
+    }
+
+
+.container {
+    max-width: 800px;
+    margin: 80px;
+    padding: 20px;
+    background: white;
+    }
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+        }
+
+
+.link {
+    /*float: right;*/
+    font-size: 0.9rem;
+        }

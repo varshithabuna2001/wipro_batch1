@@ -1,0 +1,27 @@
+.back{
+    color: rgba(0, 255, 255, 0.805);
+}
+.contains {
+            color: aquamarine;
+            display: flex;
+            gap: 20px; /* space between boxes */
+            padding: 20px;
+            border: 2px solid black;
+        }
+
+        .box1 {
+            flex: 1;
+            border: 2px solid #333;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .box img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 1px solid black;
+        }
