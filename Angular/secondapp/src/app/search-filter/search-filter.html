@@ -1,0 +1,11 @@
+
+<div>
+<input type="text" (keyup)="filterList($event)" />  
+<select>
+  <option value="">"Select names"</option>
+  @for (items of names; track $index){
+    <option>{{ names }}</option> 
+  }
+</select>
+</div>
+
