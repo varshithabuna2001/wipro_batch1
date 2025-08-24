@@ -1,0 +1,11 @@
+<div [ngClass]="'app1'">
+  This div uses app1 class (string).
+</div>
+
+<div [ngClass]="['app1', 'app2']">
+  This div uses app1 and app2 classes (array).
+</div>
+
+<div [ngClass]="{ 'app1': flag1, 'app2': flag2 }">
+  This div applies app1 and/or app2 based on flags (object).
+</div>
