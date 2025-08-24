@@ -1,0 +1,7 @@
+{
+"products": [
+{ "id": 1, "name": "earbuds", "category": "Electronics", "price": 5000 },
+{ "id": 2, "name": "Shoes", "category": "Footwear", "price": 6500 },
+{ "id": 3, "name": "Mobile", "category": "electronics", "price": 45000}
+]
+}

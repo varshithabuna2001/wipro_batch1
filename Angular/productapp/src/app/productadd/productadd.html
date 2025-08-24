@@ -1,0 +1,6 @@
+<h2>Add Product</h2>
+<input type="text" [(ngModel)]="productName" placeholder="Enter product name">
+<input type="text" [(ngModel)]="productCategory" placeholder="Enter category">
+<input type="number" [(ngModel)]="productPrice" placeholder="Enter price">
+<button (click)="submit()">Save</button>
+<a routerLink="/productlist">Cancel</a>
