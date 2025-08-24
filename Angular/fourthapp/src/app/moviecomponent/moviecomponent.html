@@ -1,0 +1,18 @@
+<h3>Movie </h3>
+
+<input type="number" [(ngModel)]="movie.movieId" placeholder="Movie Id" />
+<input type="text"   [(ngModel)]="movie.movieName" placeholder="Movie Name" />
+<input type="text"   [(ngModel)]="movie.language" placeholder="Language" />
+<input type="number" [(ngModel)]="movie.imdbRating" placeholder="IMDB Rating" />
+
+<button (click)="add()">Add</button>
+<button (click)="update()">Update</button>
+
+<ul>
+  <li *ngFor="let mov of movieService.getAll()">
+    {{ mov.movieId }} - {{ mov.movieName }} ({{ mov.language }}) - {{mov.imdbRating}}
+    <button (click)="edit(mov)">Edit</button>
+    <button (click)="delete(mov.movieId)">Delete</button>
+  </li>
+</ul>
+
