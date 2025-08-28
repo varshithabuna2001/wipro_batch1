@@ -1,0 +1,8 @@
+<h2>{{ title }}</h2>
+
+<mat-form-field appearance="fill" class="w-full">
+  <mat-label>Enter Text</mat-label>
+  <input matInput [formControl]="textControl" placeholder="">
+</mat-form-field>
+
+<p><strong>Reversed:</strong> {{ reversedText }}</p>
