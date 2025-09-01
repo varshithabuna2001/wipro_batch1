@@ -28,16 +28,19 @@ export class BookingComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const flightId = params.get('id');
       if (flightId) {
-        this.flight = this.flightService.getFlightById(flightId);
-        
-        if (!this.flight) {
-          // Flight not found, redirect to search
-          this.router.navigate(['/search']);
-          return;
-        }
-        
-        // Calculate total amount
-        this.totalAmount = this.flight.price;
+        this.flightService.getFlightById(flightId).subscribe({
+          next: (flight) => {
+            this.flight = flight;
+            
+            // Calculate total amount
+            this.totalAmount = this.flight.price;
+          },
+          error: (error) => {
+            console.error('Error fetching flight:', error);
+            // Flight not found, redirect to search
+            this.router.navigate(['/search']);
+          }
+        });
       } else {
         // No flight ID provided, redirect to search
         this.router.navigate(['/search']);

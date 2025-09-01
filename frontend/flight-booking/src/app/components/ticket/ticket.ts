@@ -27,23 +27,26 @@ export class TicketComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const flightId = params.get('id');
       if (flightId) {
-        this.flight = this.flightService.getFlightById(flightId);
-        
-        if (!this.flight) {
-          // Flight not found, redirect to search
-          this.router.navigate(['/search']);
-          return;
-        }
-        
-        // Get the latest booking for this flight
-        const bookings = this.flightService.getBookings();
-        this.booking = bookings.find(b => b.flight.id === flightId);
-        
-        if (this.booking) {
-          this.bookingReference = this.booking.bookingReference;
-          this.passengerName = this.booking.passengerName;
-          this.bookingDate = this.booking.bookingDate;
-        }
+        this.flightService.getFlightById(flightId).subscribe({
+          next: (flight) => {
+            this.flight = flight;
+            
+            // Get booking information
+            const bookings = this.flightService.getBookings();
+            this.booking = bookings.find(b => b.flight.id === flightId);
+            
+            if (this.booking) {
+              this.bookingReference = this.booking.bookingReference;
+              this.passengerName = this.booking.passengerName;
+              this.bookingDate = this.booking.bookingDate;
+            }
+          },
+          error: (error) => {
+            console.error('Error fetching flight:', error);
+            // Flight not found, redirect to search
+            this.router.navigate(['/search']);
+          }
+        });
       } else {
         // No flight ID provided, redirect to search
         this.router.navigate(['/search']);
@@ -52,7 +55,7 @@ export class TicketComponent implements OnInit {
   }
 
   downloadTicket(): void {
-    // In a real app, this would generate a PDF
+    
     alert('Ticket download functionality would be implemented here.');
   }
 

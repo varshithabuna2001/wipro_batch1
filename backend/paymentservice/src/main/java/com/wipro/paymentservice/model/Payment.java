@@ -14,7 +14,7 @@ public class Payment {
     private double amount;
     private String status; // SUCCESS / FAILED
 
-    // Constructors
+    
     public Payment() {}
 
     public Payment(Long bookingId, double amount, String status) {
@@ -23,7 +23,7 @@ public class Payment {
         this.status = status;
     }
 
-    // Getters & Setters
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

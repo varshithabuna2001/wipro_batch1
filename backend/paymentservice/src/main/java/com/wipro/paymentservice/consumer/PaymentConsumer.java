@@ -2,8 +2,6 @@ package com.wipro.paymentservice.consumer;
 
 import com.wipro.paymentservice.model.Payment;
 import com.wipro.paymentservice.repository.PaymentRepository;
-import com.wipro.paymentservice.service.PaymentService;
-import com.wipro.paymentservice.dto.BookingEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -12,20 +10,21 @@ import org.springframework.stereotype.Service;
 public class PaymentConsumer {
 
     @Autowired
-    private PaymentRepository paymentRepository;
+    private PaymentRepository repo;
 
     @KafkaListener(topics = "booking-topic", groupId = "payment-group")
-    public void consumeBookingEvent(BookingEvent bookingEvent) {
-        System.out.println("📥 Consumed booking event: " + bookingEvent);
+    public void consume(String message) {
+        
+        String[] parts = message.split(",");
+        Long bookingId = Long.parseLong(parts[0]);
+        Double amount = Double.parseDouble(parts[1]);
 
-        // Convert BookingEvent → Payment
         Payment payment = new Payment();
-        payment.setBookingId(bookingEvent.getId());
-        payment.setAmount(bookingEvent.getAmount());
+        payment.setBookingId(bookingId);
+        payment.setAmount(amount);
         payment.setStatus("SUCCESS");
 
-        paymentRepository.save(payment);
-
-        System.out.println("💰 Payment processed and saved: " + payment);
+        repo.save(payment);
+        System.out.println("Payment processed for Booking ID: " + bookingId);
     }
 }

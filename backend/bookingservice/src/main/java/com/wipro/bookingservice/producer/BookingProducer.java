@@ -14,7 +14,7 @@ public class BookingProducer {
     private KafkaTemplate<String, Booking> kafkaTemplate;
 
     public void sendBookingEvent(Booking booking) {
-        System.out.println("📤 Producing booking event → " + booking);
+        System.out.println("Producing booking event → " + booking);
         kafkaTemplate.send(TOPIC, booking);
     }
 }

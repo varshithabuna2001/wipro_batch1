@@ -1,7 +1,9 @@
 package com.wipro.bookingservice.controller;
 
 import com.wipro.bookingservice.model.Booking;
+import com.wipro.bookingservice.model.Flight;  
 import com.wipro.bookingservice.repository.BookingRepository;
+import com.wipro.bookingservice.service.BookingService; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,20 +19,27 @@ import java.util.List;
 @Tag(name = "Booking API", description = "Manage bookings")
 public class BookingController {
 
+    private static final String TOPIC = "booking-topic";
+
     @Autowired
     private BookingRepository repo;
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Booking> kafkaTemplate;
+
+    @Autowired
+    private BookingService bookingService;  // ✅ Add this
 
     @Operation(summary = "Create a new booking")
     @PostMapping
     public Booking createBooking(@RequestBody Booking booking) {
         booking.setStatus("PENDING");
         Booking saved = repo.save(booking);
-        // send booking info to Kafka
-        kafkaTemplate.send("booking-topic", saved.getId().toString(),
-                saved.getId() + "," + saved.getAmount());
+
+        // Send booking event to Kafka
+        kafkaTemplate.send(TOPIC, saved.getId().toString(), saved);
+        System.out.println("🚀 Sent booking event to Kafka: " + saved);
+
         return saved;
     }
 
@@ -38,5 +47,11 @@ public class BookingController {
     @GetMapping
     public List<Booking> all() {
         return repo.findAll();
+    }
+
+    @Operation(summary = "Search available flights")
+    @GetMapping("/search-flights")
+    public List<Flight> searchFlights(@RequestParam String source, @RequestParam String destination) {
+        return bookingService.getFlights(source, destination); // ✅ Uses Circuit Breaker
     }
 }

@@ -12,18 +12,16 @@ import java.util.List;
 public class PaymentController {
 
     @Autowired
-    private PaymentRepository paymentRepository;
+    private PaymentRepository repo;
 
     @PostMapping
-    public String makePayment(@RequestBody Payment payment) {
-        // Simulate success
+    public Payment makePayment(@RequestBody Payment payment) {
         payment.setStatus("SUCCESS");
-        paymentRepository.save(payment);
-        return "Payment successful for bookingId: " + payment.getBookingId();
+        return repo.save(payment);
     }
 
     @GetMapping
-    public List<Payment> getAllPayments() {
-        return paymentRepository.findAll();
+    public List<Payment> all() {
+        return repo.findAll();
     }
 }
