@@ -1,0 +1,25 @@
+{
+  "vehicles": [
+    {
+      "id": 1,
+      "make": "Toyota",
+      "fuelType": "Petrol",
+      "model": "Corolla",
+      "price": 15000
+    },
+    {
+      "id": 2,
+      "make": "Tesla",
+      "fuelType": "Electric",
+      "model": "Model 3",
+      "price": 35000
+    },
+    {
+      "id": 3,
+      "make": "Ford",
+      "fuelType": "Diesel",
+      "model": "F-150",
+      "price": 28000
+    }
+  ]
+}

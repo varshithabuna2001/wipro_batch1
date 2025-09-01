@@ -10,7 +10,7 @@ public class Agedifference {
 
 	public static void main(String[] args) {
 		LocalDate dtm1 = LocalDate.of(1977, Month.APRIL, 3);
-		LocalDate dtm2 = LocalDate.of(2001, Month.JUNE, 21);
+		LocalDate dtm2 = LocalDate.of(2001, Month.JUNE, 2);
   
 		difference(dtm1,dtm2);
 		System.out.println("Years:"+years+ ", Months:" +months+ ", Day:"+day);

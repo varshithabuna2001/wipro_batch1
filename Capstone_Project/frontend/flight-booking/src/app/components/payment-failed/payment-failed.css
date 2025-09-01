@@ -1,0 +1,112 @@
+.payment-failed-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.payment-failed-content {
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 28px;
+  color: #e74c3c;
+  margin-bottom: 16px;
+}
+
+p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.error-details {
+  background-color: #fdeaea;
+  padding: 16px;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.try-again-btn, .back-btn {
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.try-again-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+}
+
+.try-again-btn:hover {
+  background-color: #2980b9;
+}
+
+.back-btn {
+  background-color: #fff;
+  color: #3498db;
+  border: 1px solid #3498db;
+}
+
+.back-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.help-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+}
+
+.help-section h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .payment-failed-content {
+    padding: 24px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .try-again-btn, .back-btn {
+    width: 100%;
+  }
+}
