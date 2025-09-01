@@ -1,0 +1,105 @@
+<div class="search-results-container">
+  <!-- Search Criteria Summary -->
+  <div class="search-summary" *ngIf="searchCriteria">
+    <h2>{{ searchCriteria.origin }} — {{ searchCriteria.destination }}</h2>
+    <p>{{ searchCriteria.departureDate | date:'fullDate' }}</p>
+  </div>
+
+  <div class="results-content">
+    <!-- Filters Section -->
+    <div class="filters-panel">
+      <div class="filters-header">
+        <h3>Applied Filters</h3>
+        <button class="clear-btn" (click)="clearFilters()">Clear All</button>
+      </div>
+
+      <!-- Airlines Filter -->
+      <div class="filter-group">
+        <h4>Airlines</h4>
+        <div class="filter-options">
+          <div class="filter-option" *ngFor="let airline of filters.airlines">
+            <label>
+              <input type="checkbox" 
+                [checked]="selectedAirlines.includes(airline)"
+                (change)="toggleAirlineFilter(airline)">
+              <span>{{ airline }}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Departure Time Filter -->
+      <div class="filter-group">
+        <h4>Departure Time</h4>
+        <div class="filter-options">
+          <div class="filter-option">
+            <label>
+              <input type="checkbox" 
+                [checked]="selectedDepartureTimes.includes('morning')"
+                (change)="toggleDepartureTimeFilter('morning')">
+              <span>Morning (6:00 - 11:59)</span>
+            </label>
+          </div>
+          <div class="filter-option">
+            <label>
+              <input type="checkbox" 
+                [checked]="selectedDepartureTimes.includes('afternoon')"
+                (change)="toggleDepartureTimeFilter('afternoon')">
+              <span>Afternoon (12:00 - 17:59)</span>
+            </label>
+          </div>
+          <div class="filter-option">
+            <label>
+              <input type="checkbox" 
+                [checked]="selectedDepartureTimes.includes('evening')"
+                (change)="toggleDepartureTimeFilter('evening')">
+              <span>Evening (18:00 - 23:59)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flight Results -->
+    <div class="flights-list">
+      <!-- No Results Message -->
+      <div class="no-results" *ngIf="noFlightsFound">
+        <h3>No Flights available matching your criterion</h3>
+        <p>Try adjusting your search criteria or filters.</p>
+      </div>
+
+      <!-- Flight Cards -->
+      <div class="flight-card" *ngFor="let flight of filteredFlights">
+        <div class="airline-info">
+          <div class="airline-logo" [ngClass]="flight.airline.toLowerCase().replace(' ', '-')">
+            {{ flight.airline.charAt(0) }}
+          </div>
+          <span class="airline-name">{{ flight.airline }}</span>
+          <span class="flight-number">{{ flight.flightNumber }}</span>
+        </div>
+
+        <div class="flight-times">
+          <div class="departure">
+            <span class="time">{{ flight.departureTime }}</span>
+            <span class="city">{{ flight.origin }}</span>
+          </div>
+
+          <div class="duration">
+            <div class="duration-line"></div>
+            <span>{{ flight.duration }}</span>
+          </div>
+
+          <div class="arrival">
+            <span class="time">{{ flight.arrivalTime }}</span>
+            <span class="city">{{ flight.destination }}</span>
+          </div>
+        </div>
+
+        <div class="flight-price">
+          <span class="price">₹ {{ flight.price }}</span>
+          <button class="book-btn" (click)="selectFlight(flight)">BOOK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="ticket-container" *ngIf="flight">
+  <div class="ticket-header">
+    <h2>E-Ticket</h2>
+    <div class="booking-reference">
+      <span>Booking Reference:</span>
+      <strong>{{ bookingReference }}</strong>
+    </div>
+  </div>
+
+  <div class="ticket-content">
+    <!-- Flight Details -->
+    <div class="flight-details">
+      <div class="route-info">
+        <div class="origin">
+          <h3>{{ flight.origin }}</h3>
+          <p>{{ flight.departureTime }}</p>
+        </div>
+        <div class="flight-path">
+          <div class="airline">{{ flight.airline }} {{ flight.flightNumber }}</div>
+          <div class="path-line">
+            <div class="dot"></div>
+            <div class="line"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="duration">{{ flight.duration }}</div>
+        </div>
+        <div class="destination">
+          <h3>{{ flight.destination }}</h3>
+          <p>{{ flight.arrivalTime }}</p>
+        </div>
+      </div>
+
+      <div class="passenger-info">
+        <div class="info-item">
+          <span class="label">Passenger Name</span>
+          <span class="value">{{ passengerName }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Booking Date</span>
+          <span class="value">{{ bookingDate | date:'medium' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Cabin Baggage</span>
+          <span class="value">7 Kg / Adult</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Check-In Baggage</span>
+          <span class="value">15 Kg / Adult</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barcode -->
+    <div class="barcode-section">
+      <div class="barcode">
+        <!-- Simulated barcode using CSS -->
+        <div class="barcode-line" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></div>
+      </div>
+      <p class="barcode-text">{{ bookingReference }}</p>
+    </div>
+  </div>
+
+  <div class="ticket-footer">
+    <button class="download-btn" (click)="downloadTicket()">
+      <span class="icon">📥</span> Download Ticket
+    </button>
+    <button class="back-btn" (click)="backToSearch()">
+      Book Another Flight
+    </button>
+  </div>
+
+  <div class="ticket-note">
+    <p><strong>Important:</strong> Please arrive at the airport at least 2 hours before departure time. Carry a valid photo ID for verification.</p>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="booking-container" *ngIf="flight">
+  <div class="booking-header">
+    <h2>{{ flight.origin }} — {{ flight.destination }}</h2>
+    <p class="flight-info">{{ flight.airline }} | {{ flight.flightNumber }}</p>
+  </div>
+
+  <div class="booking-content">
+    <!-- Flight Details -->
+    <div class="flight-details">
+      <div class="flight-card">
+        <div class="airline-info">
+          <div class="airline-logo" [ngClass]="flight.airline.toLowerCase().replace(' ', '-')">
+            {{ flight.airline.charAt(0) }}
+          </div>
+          <div>
+            <span class="airline-name">{{ flight.airline }}</span>
+            <span class="flight-number">{{ flight.flightNumber }}</span>
+          </div>
+        </div>
+
+        <div class="flight-route">
+          <div class="departure">
+            <span class="time">{{ flight.departureTime }}</span>
+            <span class="city">{{ flight.origin }}</span>
+          </div>
+
+          <div class="duration">
+            <div class="duration-line"></div>
+            <span>{{ flight.duration }}</span>
+          </div>
+
+          <div class="arrival">
+            <span class="time">{{ flight.arrivalTime }}</span>
+            <span class="city">{{ flight.destination }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Passenger Details -->
+    <div class="passenger-details">
+      <h3>Passenger Details</h3>
+      <div class="passenger-card">
+        <div class="passenger-info">
+          <div class="info-row">
+            <span class="label">Name:</span>
+            <span class="value">{{ passengerName }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Cabin Baggage:</span>
+            <span class="value">{{ cabinBaggage }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Check-In Baggage:</span>
+            <span class="value">{{ checkInBaggage }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Summary -->
+    <div class="payment-summary">
+      <h3>Payment Summary</h3>
+      <div class="summary-card">
+        <div class="summary-row">
+          <span>Base Fare</span>
+          <span>₹ {{ flight.price - 651 }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Taxes & Fees</span>
+          <span>₹ 651</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Amount</span>
+          <span>₹ {{ totalAmount }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="booking-actions">
+    <button class="proceed-btn" (click)="proceedToPayment()">PROCEED TO PAY</button>
+  </div>
+</div>
