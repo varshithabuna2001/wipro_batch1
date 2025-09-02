@@ -13,5 +13,3 @@ public interface FlightClient {
     @GetMapping("/flights/search")
     List<Flight> searchFlights(@RequestParam String source, @RequestParam String destination);
 }
-
-   

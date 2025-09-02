@@ -15,7 +15,7 @@ public class BookingService {
     @Autowired
     private FlightClient flightClient;
 
-    @CircuitBreaker(name = "flightServiceCB", fallbackMethod = "fallbackFlights")
+    @CircuitBreaker(name = "flightService", fallbackMethod = "fallbackFlights")
     public List<Flight> getFlights(String source, String destination) {
         return flightClient.searchFlights(source, destination);
     }

@@ -12,8 +12,8 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: flight-search-service
-          uri: lb://flight-search-service
+        - id: flight-service
+          uri: lb://flight-service
           predicates:
             - Path=/flights/**
 
