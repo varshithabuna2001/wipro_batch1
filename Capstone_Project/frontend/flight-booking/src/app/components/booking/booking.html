@@ -5,7 +5,7 @@
   </div>
 
   <div class="booking-content">
-    <!-- Flight Details -->
+    
     <div class="flight-details">
       <div class="flight-card">
         <div class="airline-info">
@@ -37,28 +37,35 @@
       </div>
     </div>
 
-    <!-- Passenger Details -->
+    
     <div class="passenger-details">
       <h3>Passenger Details</h3>
       <div class="passenger-card">
         <div class="passenger-info">
           <div class="info-row">
             <span class="label">Name:</span>
+            <input type="text"[(ngModel)]="passengerName" placeholder="Enter Name" class="name-input"/>
             <span class="value">{{ passengerName }}</span>
           </div>
           <div class="info-row">
-            <span class="label">Cabin Baggage:</span>
-            <span class="value">{{ cabinBaggage }}</span>
+            <span class="label">AGE:</span>
+            <input type="number" placeholder="Enter Age" class="age-input"/>
           </div>
+
           <div class="info-row">
-            <span class="label">Check-In Baggage:</span>
-            <span class="value">{{ checkInBaggage }}</span>
-          </div>
+            <span class="label">Gender:</span>
+            <select [(ngModel)]="gender" class="value">
+            <option value="" disabled selected>Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="other">other</option>
+            </select>
+            </div>
         </div>
       </div>
     </div>
 
-    <!-- Payment Summary -->
+    
     <div class="payment-summary">
       <h3>Payment Summary</h3>
       <div class="summary-card">

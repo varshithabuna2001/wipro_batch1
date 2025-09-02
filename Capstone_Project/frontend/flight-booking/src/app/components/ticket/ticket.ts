@@ -30,12 +30,12 @@ export class TicketComponent implements OnInit {
         this.flight = this.flightService.getFlightById(flightId);
         
         if (!this.flight) {
-          // Flight not found, redirect to search
+          
           this.router.navigate(['/search']);
           return;
         }
         
-        // Get the latest booking for this flight
+        
         const bookings = this.flightService.getBookings();
         this.booking = bookings.find(b => b.flight.id === flightId);
         
@@ -45,14 +45,14 @@ export class TicketComponent implements OnInit {
           this.bookingDate = this.booking.bookingDate;
         }
       } else {
-        // No flight ID provided, redirect to search
+        
         this.router.navigate(['/search']);
       }
     });
   }
 
   downloadTicket(): void {
-    // In a real app, this would generate a PDF
+    
     alert('Ticket download functionality would be implemented here.');
   }
 

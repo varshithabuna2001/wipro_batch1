@@ -16,7 +16,7 @@ export class PaymentComponent implements OnInit {
   totalAmount: number = 0;
   paymentMethod: string = 'card';
   
-  // Card details
+  
   cardNumber: string = '';
   cardholderName: string = '';
   expiryMonth: string = '';
@@ -24,7 +24,7 @@ export class PaymentComponent implements OnInit {
   cvv: string = '';
   saveCardInfo: boolean = false;
   
-  // Payment processing
+  
   isProcessing: boolean = false;
   paymentError: string | null = null;
 
@@ -41,15 +41,15 @@ export class PaymentComponent implements OnInit {
         this.flight = this.flightService.getFlightById(flightId);
         
         if (!this.flight) {
-          // Flight not found, redirect to search
+          
           this.router.navigate(['/search']);
           return;
         }
         
-        // Set total amount
+        
         this.totalAmount = this.flight.price;
       } else {
-        // No flight ID provided, redirect to search
+        
         this.router.navigate(['/search']);
       }
     });
@@ -60,33 +60,32 @@ export class PaymentComponent implements OnInit {
   }
 
   processPayment(): void {
-    // Reset error state
+    
     this.paymentError = null;
     
-    // Validate form based on payment method
+    
     if (this.paymentMethod === 'card') {
       if (!this.validateCardDetails()) {
         return;
       }
     }
     
-    // Show processing state
+    
     this.isProcessing = true;
     
-    // Simulate payment processing
+    
     setTimeout(() => {
       this.isProcessing = false;
       
-      // For demo purposes, randomly succeed or fail
-      const success = Math.random() > 0.2; // 80% success rate
+      
+      const success = Math.random() > 0.2; 
       
       if (success && this.flight) {
-        // Navigate to ticket page on success
+        
         this.router.navigate(['/ticket', this.flight.id]);
       } else {
-        // Show error on failure
+        
         this.paymentError = 'Payment failed. Please try again.';
-        // Navigate to payment failed page
         this.router.navigate(['/payment-failed']);
       }
     }, 2000);

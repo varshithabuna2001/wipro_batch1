@@ -42,7 +42,7 @@
   letter-spacing: 1px;
 }
 
-/* Flight Details */
+
 .ticket-content {
   margin-bottom: 24px;
 }
@@ -139,7 +139,7 @@
   font-weight: 500;
 }
 
-/* Barcode */
+
 .barcode-section {
   text-align: center;
   margin: 24px 0;
@@ -176,7 +176,7 @@
   margin-top: 8px;
 }
 
-/* Footer */
+
 .ticket-footer {
   display: flex;
   justify-content: space-between;
@@ -218,7 +218,7 @@
   margin-right: 8px;
 }
 
-/* Note */
+
 .ticket-note {
   margin-top: 24px;
   padding: 16px;
@@ -233,7 +233,7 @@
   color: #666;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .route-info {
     flex-direction: column;

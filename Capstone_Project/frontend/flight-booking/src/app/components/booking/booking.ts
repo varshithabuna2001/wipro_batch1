@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService, Flight } from '../../services/flight.service';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './booking.html',
   styleUrl: './booking.css'
 })
 export class BookingComponent implements OnInit {
   flight: Flight | undefined;
-  passengerName: string = 'John Doe'; // Hardcoded for demo
-  passengerCount: number = 1;
-  cabinBaggage: string = '7 Kg / Adult';
-  checkInBaggage: string = '15 Kg / Adult';
+  passengerName: string = ' '; 
+  age: number |null = null;
+  gender: string = ' ';
   totalAmount: number = 0;
 
   constructor(
@@ -31,15 +31,15 @@ export class BookingComponent implements OnInit {
         this.flight = this.flightService.getFlightById(flightId);
         
         if (!this.flight) {
-          // Flight not found, redirect to search
+          
           this.router.navigate(['/search']);
           return;
         }
         
-        // Calculate total amount
+        
         this.totalAmount = this.flight.price;
       } else {
-        // No flight ID provided, redirect to search
+        
         this.router.navigate(['/search']);
       }
     });

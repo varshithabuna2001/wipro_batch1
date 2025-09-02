@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
     private router: Router,
     private flightService: FlightService
   ) {
-    // Set today's date in YYYY-MM-DD format for min date validation
+    
     const date = new Date();
     this.today = date.toISOString().split('T')[0];
   }
@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit {
 
   onSubmit(): void {
     if (this.searchForm.invalid) {
-      // Mark all fields as touched to trigger validation messages
+      
       Object.keys(this.searchForm.controls).forEach(key => {
         const control = this.searchForm.get(key);
         control?.markAsTouched();
@@ -57,10 +57,10 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    // Store search criteria in the service
+    
     this.flightService.setSearchCriteria(this.searchForm.value);
     
-    // Navigate to search results page
+    
     this.router.navigate(['/search-results']);
   }
 }
