@@ -28,7 +28,7 @@ public class BookingController {
     private KafkaTemplate<String, Booking> kafkaTemplate;
 
     @Autowired
-    private BookingService bookingService;  // ✅ Add this
+    private BookingService bookingService;  
 
     @Operation(summary = "Create a new booking")
     @PostMapping
@@ -36,9 +36,9 @@ public class BookingController {
         booking.setStatus("PENDING");
         Booking saved = repo.save(booking);
 
-        // Send booking event to Kafka
+        
         kafkaTemplate.send(TOPIC, saved.getId().toString(), saved);
-        System.out.println("🚀 Sent booking event to Kafka: " + saved);
+        System.out.println("Sent booking event to Kafka: " + saved);
 
         return saved;
     }
@@ -52,6 +52,6 @@ public class BookingController {
     @Operation(summary = "Search available flights")
     @GetMapping("/search-flights")
     public List<Flight> searchFlights(@RequestParam String source, @RequestParam String destination) {
-        return bookingService.getFlights(source, destination); // ✅ Uses Circuit Breaker
+        return bookingService.getFlights(source, destination); 
     }
 }

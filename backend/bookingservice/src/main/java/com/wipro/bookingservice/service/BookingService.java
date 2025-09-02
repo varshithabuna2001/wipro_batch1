@@ -20,7 +20,7 @@ public class BookingService {
         return flightClient.searchFlights(source, destination);
     }
 
-    // fallback method
+   
     public List<Flight> fallbackFlights(String source, String destination, Throwable t) {
         System.out.println("⚠️ Circuit Breaker triggered: " + t.getMessage());
         return Collections.emptyList();

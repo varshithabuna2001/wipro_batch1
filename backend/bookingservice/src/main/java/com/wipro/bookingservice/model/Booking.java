@@ -13,9 +13,9 @@ public class Booking {
     private Long flightId;
     private String userId;
     private double amount;
-    private String status; // PENDING / CONFIRMED / FAILED
+    private String status; 
 
-    // Constructors
+    
     public Booking() {}
 
     public Booking(Long flightId, String userId, double amount, String status) {

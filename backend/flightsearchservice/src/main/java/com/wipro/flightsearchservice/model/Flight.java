@@ -17,7 +17,7 @@ public class Flight {
     private String arrivalTime;
     private double price;
 
-    // Constructors
+    
     public Flight() {}
 
     public Flight(String flightNumber, String origin, String destination,
@@ -30,7 +30,7 @@ public class Flight {
         this.price = price;
     }
 
-    // Getters & Setters
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

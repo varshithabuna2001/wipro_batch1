@@ -7,7 +7,7 @@ public class Flight {
     private String destination;
     private double price;
 
-    // Constructors
+    
     public Flight() {}
 
     public Flight(Long id, String source, String destination, double price) {
@@ -17,7 +17,7 @@ public class Flight {
         this.price = price;
     }
 
-    // Getters and Setters
+   
     public Long getId() {
         return id;
     }

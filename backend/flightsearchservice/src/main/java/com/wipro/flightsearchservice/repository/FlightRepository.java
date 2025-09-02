@@ -8,9 +8,9 @@ import java.util.List;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
-    // Existing method
+    
     List<Flight> findByOriginAndDestination(String origin, String destination);
     
-    // New method to resolve the compilation error
+    
     List<Flight> findByOriginAndDestinationAndDepartureTime(String origin, String destination, String departureTime);
 }

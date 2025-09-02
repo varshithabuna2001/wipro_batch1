@@ -24,7 +24,7 @@ public class FlightController {
     public List<Flight> search(@RequestParam String origin,
                                @RequestParam String destination,
                                @RequestParam String departureTime) {
-        // This method relies on a custom query method in the FlightRepository
+        
         return repo.findByOriginAndDestinationAndDepartureTime(origin, destination, departureTime);
     }
 
@@ -38,7 +38,7 @@ public class FlightController {
     @Operation(summary = "Get all flights")
     @GetMapping
     public List<Flight> all() {
-        // This method uses the built-in findAll() method from JpaRepository
+        
         return repo.findAll();
     }
 }
