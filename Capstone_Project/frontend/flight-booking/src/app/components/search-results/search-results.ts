@@ -17,19 +17,19 @@ export class SearchResultsComponent implements OnInit {
   searchCriteria: SearchCriteria | null = null;
   noFlightsFound = false;
   
-  // Filter options
+  
   filters = {
     airlines: [] as string[],
     minPrice: 0,
     maxPrice: 10000,
     departureTime: {
-      morning: false, // 6:00 - 11:59
-      afternoon: false, // 12:00 - 17:59
-      evening: false, // 18:00 - 23:59
+      morning: false, 
+      afternoon: false, 
+      evening: false, 
     }
   };
   
-  // Selected filters
+  
   selectedAirlines: string[] = [];
   selectedDepartureTimes: string[] = [];
 
@@ -39,27 +39,27 @@ export class SearchResultsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get search criteria
+    
     this.flightService.getSearchCriteria().subscribe(criteria => {
       this.searchCriteria = criteria;
       
-      // If no search criteria, redirect back to search page
+      
       if (!criteria) {
         this.router.navigate(['/search']);
         return;
       }
     });
     
-    // Get flights
+    
     this.flightService.getFlights().subscribe(flights => {
       this.flights = flights;
       this.filteredFlights = [...flights];
       this.noFlightsFound = this.filteredFlights.length === 0;
       
-      // Extract unique airlines for filters
+      
       this.filters.airlines = [...new Set(flights.map(flight => flight.airline))];
       
-      // Set min and max price based on available flights
+      
       if (flights.length > 0) {
         this.filters.minPrice = Math.min(...flights.map(flight => flight.price));
         this.filters.maxPrice = Math.max(...flights.map(flight => flight.price));
@@ -69,12 +69,12 @@ export class SearchResultsComponent implements OnInit {
 
   applyFilters(): void {
     this.filteredFlights = this.flights.filter(flight => {
-      // Filter by airline if any selected
+      
       if (this.selectedAirlines.length > 0 && !this.selectedAirlines.includes(flight.airline)) {
         return false;
       }
       
-      // Filter by departure time if any selected
+      
       if (this.selectedDepartureTimes.length > 0) {
         const hour = parseInt(flight.departureTime.split(':')[0]);
         
@@ -126,7 +126,6 @@ export class SearchResultsComponent implements OnInit {
   }
 
   selectFlight(flight: Flight): void {
-    // Navigate to booking page with flight ID
     this.router.navigate(['/booking', flight.id]);
   }
 }

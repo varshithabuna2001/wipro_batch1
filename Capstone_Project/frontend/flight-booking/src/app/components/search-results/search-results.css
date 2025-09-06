@@ -26,7 +26,7 @@
   gap: 2rem;
 }
 
-/* Filters Panel */
+
 .filters-panel {
   flex: 0 0 250px;
   background-color: white;
@@ -85,7 +85,7 @@
   accent-color: var(--primary-color);
 }
 
-/* Flights List */
+
 .flights-list {
   flex: 1;
 }
@@ -249,7 +249,7 @@
   background-color: #1565c0;
 }
 
-/* Responsive styles */
+
 @media (max-width: 992px) {
   .results-content {
     flex-direction: column;

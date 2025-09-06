@@ -5,7 +5,7 @@
   </div>
 
   <div class="payment-content">
-    <!-- Payment Methods -->
+    
     <div class="payment-methods">
       <h3>Select Payment Method</h3>
       <div class="methods-container">
@@ -28,9 +28,9 @@
       </div>
     </div>
 
-    <!-- Payment Form -->
+    
     <div class="payment-form">
-      <!-- Credit/Debit Card Form -->
+      
       <div class="card-form" *ngIf="paymentMethod === 'card'">
         <div class="form-group">
           <label for="cardNumber">Card Number</label>
@@ -114,18 +114,18 @@
         </div>
       </div>
       
-      <!-- Other payment methods (placeholder) -->
+      
       <div class="other-payment-method" *ngIf="paymentMethod !== 'card'">
         <p>This payment method is currently under development. Please use Credit/Debit Card option.</p>
       </div>
       
-      <!-- Error message -->
+      
       <div class="error-message" *ngIf="paymentError">
         {{ paymentError }}
       </div>
     </div>
 
-    <!-- Payment Summary -->
+  
     <div class="payment-summary">
       <h3>Payment Summary</h3>
       <div class="summary-card">

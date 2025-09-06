@@ -35,8 +35,6 @@ export interface Booking {
 export class FlightService {
   private searchCriteriaSubject = new BehaviorSubject<SearchCriteria | null>(null);
   private flightsSubject = new BehaviorSubject<Flight[]>([]);
-  
-  // Mock flight data
   private mockFlights: Flight[] = [
     {
       id: '1',
@@ -104,8 +102,6 @@ export class FlightService {
   }
 
   private searchFlights(criteria: SearchCriteria): void {
-    // In a real app, this would call an API
-    // For now, we'll filter our mock data based on the criteria
     const filteredFlights = this.mockFlights.filter(flight => 
       flight.origin.toLowerCase().includes(criteria.origin.toLowerCase()) &&
       flight.destination.toLowerCase().includes(criteria.destination.toLowerCase())
@@ -118,7 +114,7 @@ export class FlightService {
     return this.mockFlights.find(flight => flight.id === id);
   }
 
-  // Store for bookings
+  
   private bookings: Booking[] = [];
   private selectedFlightSubject = new BehaviorSubject<Flight | null>(null);
 
@@ -131,11 +127,10 @@ export class FlightService {
   }
 
   saveBooking(booking: Booking): void {
-    // Add booking to array
+   
     this.bookings.push(booking);
     
-    // In a real app, this would be saved to a database
-    // For now, we'll just store it in localStorage
+    
     try {
       const existingBookings = localStorage.getItem('bookings');
       let bookingsArray = existingBookings ? JSON.parse(existingBookings) : [];

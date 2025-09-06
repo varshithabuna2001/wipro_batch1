@@ -13,8 +13,6 @@ export class PaymentFailedComponent {
   constructor(private router: Router) {}
 
   tryAgain(): void {
-    // Navigate back to the payment page
-    // In a real app, we would preserve the flight ID
     this.router.navigate(['/search-results']);
   }
 

@@ -96,7 +96,6 @@ export class FlightService {
   }
 
   searchFlights(criteria: SearchCriteria): Flight[] {
-    // In a real app, this would be an API call
     return this.mockFlights.filter(flight => 
       flight.origin.toLowerCase() === criteria.origin.toLowerCase() && 
       flight.destination.toLowerCase() === criteria.destination.toLowerCase()

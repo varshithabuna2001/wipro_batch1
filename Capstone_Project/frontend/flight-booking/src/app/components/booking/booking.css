@@ -27,9 +27,9 @@
   gap: 2rem;
 }
 
-/* Flight Details */
+
 .flight-card {
-  background-color: white;
+  background-color: wheat;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -54,11 +54,11 @@
 }
 
 .air-india {
-  background-color: #e03131;
+  background-color: blue;
 }
 
 .indigo {
-  background-color: #4263eb;
+  background-color: violet;
 }
 
 .spicejet {
@@ -136,7 +136,7 @@
   color: var(--text-secondary);
 }
 
-/* Passenger Details */
+
 .passenger-details h3,
 .payment-summary h3 {
   margin-top: 0;
@@ -170,7 +170,7 @@
   font-weight: 500;
 }
 
-/* Payment Summary */
+
 .summary-row {
   display: flex;
   justify-content: space-between;
@@ -185,7 +185,7 @@
   color: var(--primary-color);
 }
 
-/* Actions */
+
 .booking-actions {
   margin-top: 2rem;
   display: flex;
