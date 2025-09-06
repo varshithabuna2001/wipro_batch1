@@ -1,0 +1,64 @@
+<div class="search-container">
+  <div class="search-card">
+    <h2>Search Flights</h2>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div class="location-inputs">
+          <div class="input-group">
+            <label for="origin">From</label>
+            <input 
+              type="text" 
+              id="origin" 
+              formControlName="origin" 
+              placeholder="City or Airport Code (min 3 characters)"
+            >
+            <div class="error-message" *ngIf="searchForm.get('origin')?.invalid && searchForm.get('origin')?.touched">
+              <span *ngIf="searchForm.get('origin')?.errors?.['required']">Origin is required</span>
+              <span *ngIf="searchForm.get('origin')?.errors?.['minlength']">Minimum 3 characters required</span>
+            </div>
+          </div>
+          
+          <button type="button" class="swap-btn" (click)="swapLocations()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 10l5 5 5-5"/>
+              <path d="M7 14l5-5 5 5"/>
+            </svg>
+          </button>
+          
+          <div class="input-group">
+            <label for="destination">To</label>
+            <input 
+              type="text" 
+              id="destination" 
+              formControlName="destination" 
+              placeholder="City or Airport Code (min 3 characters)"
+            >
+            <div class="error-message" *ngIf="searchForm.get('destination')?.invalid && searchForm.get('destination')?.touched">
+              <span *ngIf="searchForm.get('destination')?.errors?.['required']">Destination is required</span>
+              <span *ngIf="searchForm.get('destination')?.errors?.['minlength']">Minimum 3 characters required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="input-group date-input">
+          <label for="departureDate">Departure</label>
+          <input 
+            type="date" 
+            id="departureDate" 
+            formControlName="departureDate"
+            [min]="today"
+          >
+          <div class="error-message" *ngIf="searchForm.get('departureDate')?.invalid && searchForm.get('departureDate')?.touched">
+            <span *ngIf="searchForm.get('departureDate')?.errors?.['required']">Departure date is required</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="search-btn">SEARCH</button>
+      </div>
+    </form>
+  </div>
+</div>

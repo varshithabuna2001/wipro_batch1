@@ -1,0 +1,158 @@
+<div class="payment-container" *ngIf="flight">
+  <div class="payment-header">
+    <h2>Payment</h2>
+    <p class="flight-info">{{ flight.origin }} — {{ flight.destination }} | {{ flight.airline }} {{ flight.flightNumber }}</p>
+  </div>
+
+  <div class="payment-content">
+    
+    <div class="payment-methods">
+      <h3>Select Payment Method</h3>
+      <div class="methods-container">
+        <div class="method-option" [class.active]="paymentMethod === 'card'" (click)="selectPaymentMethod('card')">
+          <div class="method-icon card-icon"></div>
+          <span>Credit/Debit Card</span>
+        </div>
+        <div class="method-option" [class.active]="paymentMethod === 'upi'" (click)="selectPaymentMethod('upi')">
+          <div class="method-icon upi-icon"></div>
+          <span>UPI</span>
+        </div>
+        <div class="method-option" [class.active]="paymentMethod === 'netbanking'" (click)="selectPaymentMethod('netbanking')">
+          <div class="method-icon netbanking-icon"></div>
+          <span>Net Banking</span>
+        </div>
+        <div class="method-option" [class.active]="paymentMethod === 'wallet'" (click)="selectPaymentMethod('wallet')">
+          <div class="method-icon wallet-icon"></div>
+          <span>Wallet / Cash Cards</span>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="payment-form">
+      
+      <div class="card-form" *ngIf="paymentMethod === 'card'">
+        <div class="form-group">
+          <label for="cardNumber">Card Number</label>
+          <input 
+            type="text" 
+            id="cardNumber" 
+            name="cardNumber"
+            [(ngModel)]="cardNumber"
+            placeholder="1234 5678 9012 3456"
+            maxlength="16"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="cardholderName">Name on Card</label>
+          <input 
+            type="text" 
+            id="cardholderName" 
+            name="cardholderName"
+            [(ngModel)]="cardholderName"
+            placeholder="John Doe"
+          >
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group expiry">
+            <label>Expiry Date</label>
+            <div class="expiry-inputs">
+              <select name="expiryMonth" [(ngModel)]="expiryMonth">
+                <option value="" disabled selected>MM</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <span>/</span>
+              <select name="expiryYear" [(ngModel)]="expiryYear">
+                <option value="" disabled selected>YYYY</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group cvv">
+            <label for="cvv">CVV</label>
+            <input 
+              type="password" 
+              id="cvv" 
+              name="cvv"
+              [(ngModel)]="cvv"
+              placeholder="123"
+              maxlength="3"
+            >
+          </div>
+        </div>
+        
+        <div class="form-group checkbox">
+          <label>
+            <input 
+              type="checkbox" 
+              name="saveCardInfo"
+              [(ngModel)]="saveCardInfo"
+            >
+            <span>Save information for future checkouts</span>
+          </label>
+        </div>
+      </div>
+      
+      
+      <div class="other-payment-method" *ngIf="paymentMethod !== 'card'">
+        <p>This payment method is currently under development. Please use Credit/Debit Card option.</p>
+      </div>
+      
+     
+      <div class="error-message" *ngIf="paymentError">
+        {{ paymentError }}
+      </div>
+    </div>
+
+   
+    <div class="payment-summary">
+      <h3>Payment Summary</h3>
+      <div class="summary-card">
+        <div class="summary-row">
+          <span>Base Fare</span>
+          <span>₹ {{ flight.price - 651 }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Taxes & Fees</span>
+          <span>₹ 651</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total Amount</span>
+          <span>₹ {{ totalAmount }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="payment-actions">
+    <button 
+      class="pay-btn" 
+      [disabled]="isProcessing" 
+      (click)="processPayment()"
+    >
+      <span *ngIf="!isProcessing">PAY ₹ {{ totalAmount }}</span>
+      <span *ngIf="isProcessing">Processing...</span>
+    </button>
+  </div>
+</div>
